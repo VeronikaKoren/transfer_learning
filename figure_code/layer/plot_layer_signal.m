@@ -32,7 +32,7 @@ col={blue,green};
 factor=100; % scaling for easier reading
 %% load results
 
-addpath('/home/veronika/synced/transfer_result/signal/layer/')
+addpath('/home/veronika/transfer_learning/result/signal/layer/')
     
 loadname=['layer_remove_info_',sprintf('%1.0i',K)];
 load(loadname)
@@ -61,7 +61,7 @@ sm=cellfun(@(x) nanstd(x),x_same,'UniformOutput',false);
 
 regular=cellfun(@(x) squeeze(nanmean(x(:,2,:)- x(:,1,:))), x_mean, 'UniformOutput', false);
 
-loadname2='layer_permuted';
+loadname2=['layer_perm_',sprintf('%1.0i',K)];
 load(loadname2)
 permuted=cellfun(@(x) squeeze(nanmean(x(:,:,2,:)-x(:,:,1,:))).*factor, xp_layer, 'UniformOutput', false);
 nperm=size(permuted{1},1);

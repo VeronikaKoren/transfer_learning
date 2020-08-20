@@ -33,15 +33,13 @@ pos_vec=[0,0,14,12];
 
 %% load results
 
-addpath(['/home/veronika/synced/transfer_result/signal/sign/K',sprintf('%1.0i',K)])
-addpath('/home/veronika/synced/transfer_result/signal/bursty/')
 
-%%
+addpath('/home/veronika/transfer_learning/result/signal/bursty/')
 
-loadname=['bursty_ri_',sprintf('%1.0i',K)];
+loadname=['bursty_remove_info_',sprintf('%1.0i',K)];
 load(loadname)
 
-loadname2='perm_2class';
+loadname2=['bursty_perm_',sprintf('%1.0i',K)];
 load(loadname2)
 
 
@@ -190,67 +188,3 @@ if savefig==1
     saveas(H,[savefile,figname],'pdf');
 end
 
-%% plot small
-
-%{
-savefig=0;
-savefile='/home/veronika/Dropbox/presentation/transfer/bernstein/';
-pos_vec=[0,0,7,9];
-
-H=figure('name',figname,'visible','on');
-
-for r=1:2
-    subplot(2,1,r)
-    hold on
-    
-    % errorbars for the mean and the standard error of the mean(std(x)/sqrt(N))
-    y1=mnm{r}-snm{r}./sqrt(nbses);
-    y2=mnm{r}+snm{r}./sqrt(nbses);
-    patch([x_vec fliplr(x_vec)], [y1 fliplr(y2)], col{1},'FaceAlpha',0.3,'EdgeColor',col{1})
-    
-    z1=mm{r}-sm{r}./sqrt(nbses);
-    z2=mm{r}+sm{r}./sqrt(nbses);
-    patch([x_vec fliplr(x_vec)], [z1 fliplr(z2)], col{2},'FaceAlpha',0.3,'EdgeColor',col{2})
-    
-    plot(x_vec,zeros(K,1),'--','color',gray)
-    
-    hold off
-    box off
-    
-    ylim([-maxy,maxy])
-    xlim([-2,K+2])
-    
-    set(gca,'YTick',yt)
-    set(gca,'XTick',xt)
-    
-    set(gca,'XTickLabel',xt)
-    set(gca,'YTickLabel',yt,'FontName','Arial','fontsize',fs)
-    
-    title(nameg{r},'FontName','Arial','fontsize',fs,'fontweight','normal')
-    
-    if r==1
-        for ii=1:2
-            text(0.14,0.8+(ii-1)*0.1,namebeh{ii},'units','normalized','color',col{ii},'FontName','Arial','fontsize',fs)
-        end
-    end
-    set(gca,'LineWidth',1.0,'TickLength',[0.025 0.025]);
-    
-    op=get(gca,'OuterPosition');
-    set(gca,'OuterPosition',[op(1)+0.06 op(2) op(3)-0.06 op(4)]); % OuterPosition = [left bottom width height]
-    
-end
-
-axes
-h2=ylabel ('pop. signal (a.u.)','units','normalized','Position',[-0.08,0.5,0],'FontName','Arial','fontsize',fs);
-h1 = xlabel ('time (ms)','units','normalized','Position',[0.5,-0.08,0],'FontName','Arial','fontsize',fs);
-set(gca,'Visible','off')
-set(h1,'visible','on')
-set(h2,'visible','on')
-
-set(H, 'Units','centimeters', 'Position', pos_vec)                                                      % size of the figure
-set(H,'PaperPositionMode','Auto','PaperUnits', 'centimeters','PaperSize',[pos_vec(3), pos_vec(4)])      % for saving in the right size
-
-if savefig==1
-    saveas(H,[savefile,figname],'pdf');
-end
-%}

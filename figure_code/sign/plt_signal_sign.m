@@ -6,19 +6,21 @@ close all
 %clc 
 
 savefig=0;
-K=400;
+K=500;
 
 %%
 
+ntype={'sign','info','bursty'};
 namebeh={'different','same'};
-namei={'s+c','c'};
-nameg={'strong weights','weak weights'};
 
-task=['plot info sessions and regular/permuted'];
+nameg={'minus','plus'};
+namei=nameg;
+
+task='plot signal sign sessions and regular/permuted';
 disp(task);
 
-savefile='/home/veronika/Dropbox/transfer/figure/info/';
-figname=['info_',sprintf('%1.0i',K)];
+savefile='/home/veronika/Dropbox/transfer/figure/sign/';
+figname=['signal_sign_',sprintf('%1.0i',K)];
 
 fs=10; % figure settings
 lw=1.5;
@@ -27,7 +29,6 @@ blue=[0,0.48,0.74];
 green=[0.2,0.6,0];
 gray=[0.2,0.2,0.2];
 red=[0.85,0.32,0.1];
-
 col={blue,green};    
 
 factor=100; % scaling for easier reading
@@ -35,20 +36,17 @@ pos_vec=[0,0,14,12];
 
 %% load results
 
-addpath('/home/veronika/transfer_learning/result/signal/info/')
+addpath(['/home/veronika/transfer_learning/result/signal/sign/K',sprintf('%1.0i',K)])
 
-loadname=['info_remove_info_',sprintf('%1.0i',K)];
+loadname=['sign_remove_info_',sprintf('%1.0i',K)];
 load(loadname)
 
-loadname2=['info_perm_',sprintf('%1.0i',K)];
+loadname2=['sign_perm_',sprintf('%1.0i',K)];
 load(loadname2)
 
 %%
-x_mean=cell(2,1);
-for ii=1:2
-    x_mean{ii}=squeeze(x_all(:,ii,:,:)).*factor;
-end
 
+x_mean=cellfun(@(x) squeeze(nanmean(x,2)).*factor, x_sign, 'UniformOutput', false);
 x_diff=cellfun(@(x) squeeze(x(:,1,:)), x_mean, 'UniformOutput', false); % choice "different"
 x_same=cellfun(@(x) squeeze(x(:,2,:)), x_mean, 'UniformOutput', false); % choice "same"
 
@@ -65,7 +63,12 @@ sm=cellfun(@(x) nanstd(x),x_same,'UniformOutput',false);
 %% regular/permuted
 
 regular=cellfun(@(x) squeeze(nanmean(x(:,2,:)- x(:,1,:))), x_mean, 'UniformOutput', false);
-permuted=cellfun(@(x) squeeze(nanmean(x(:,:,2,:)-x(:,:,1,:))).*factor, xperm, 'UniformOutput', false); % difference and average across sessions
+%permuted=cellfun(@(x) squeeze(nanmean(x(:,:,2,:)-x(:,:,1,:))).*factor, xperm, 'UniformOutput', false); % difference and average across sessions
+if K==500
+    permuted=cellfun(@(x) squeeze(nanmean(x(:,:,2,:)-x(:,:,1,:))).*factor, xp_sign, 'UniformOutput', false); % difference and average across sessions
+else
+    permuted=cellfun(@(x) squeeze(nanmean(x(:,:,2,:)-x(:,:,1,:))).*factor, xperm, 'UniformOutput', false); % difference and average across sessions
+end
 nperm=size(permuted{1},1);
 
 %%
@@ -86,10 +89,12 @@ end
 
 %% plot
 
+namesgn={'negative weight','positive weight'};
+
 max_val=cat(1,cellfun(@(x,y) max(x+(y./nbses)),mm,sm),cellfun(@(x,y) max(x+(y./nbses)),mnm,snm));
 maxy=max(max_val(:)).*2.5;
 
-yt=-0.3:0.3:0.3;
+yt=-0.5:0.5:0.5;
 
 xt=0:200:400;
 x_vec=1:K;
@@ -124,16 +129,15 @@ for r=1:2
     set(gca,'YTickLabel',[])
     
     if r==1
-        set(gca,'YTickLabel',yt,'FontName','Arial','fontsize',fs)
-        ylabel ('pop. signal (a.u.)','FontName','Arial','fontsize',fs);
+        set(gca,'YTickLabel',yt)
     end
     
-    title(nameg{r},'FontName','Arial','fontsize',fs,'fontweight','normal')
+    title(namesgn{r},'FontName','Arial','fontsize',fs,'fontweight','normal')
     
     if r==1
-        for ii=1:2
-            text(0.14,0.8+(ii-1)*0.1,namebeh{ii},'units','normalized','color',col{ii},'FontName','Arial','fontsize',fs)
-        end
+        text(0.14,0.78,namebeh{1},'units','normalized','color',col{1},'FontName','Arial','fontsize',fs)
+        text(0.14,0.9,namebeh{2},'units','normalized','color',col{2},'FontName','Arial','fontsize',fs)
+        ylabel ('pop. signal (a.u.)','FontName','Arial','fontsize',fs);
     end
     
     set(gca,'LineWidth',1.0,'TickLength',[0.025 0.025]);
@@ -175,7 +179,6 @@ for r=1:2
 end
 
 axes
-
 h1 = xlabel ('time (ms)','units','normalized','Position',[0.5,-0.08,0],'FontName','Arial','fontsize',fs);
 set(gca,'Visible','off')
 set(h1,'visible','on')

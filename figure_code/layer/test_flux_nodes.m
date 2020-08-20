@@ -7,7 +7,7 @@ clc
 
 savefig=0;
 namei={'cnm','inm','cm'};
-info_cases=[2,3];
+info_cases=[1,3];
 
 K=350;
 alpha=0.05;
@@ -38,7 +38,7 @@ col={red,blue};
 
 %% plot cm
 
-addpath('/home/veronika/synced/transfer_result/pairwise/cm/across/')
+addpath('/home/veronika/transfer_learning/result/pairwise/cm/across/')
 
 flux=cell(2,3);
 namef=cell(2,3);

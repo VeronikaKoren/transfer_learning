@@ -17,7 +17,6 @@ period=2;
 namep={'target','test'};
 namea={'V1','V4'};
 nameg={'bursty','non-bursty'};
-namei={'s+c','c'};
 
 savefile='/home/veronika/Dropbox/transfer/figure/bursty/';
 figname=['bac_bursty_',sprintf('%1.0i',T)];
@@ -33,7 +32,7 @@ col={'m','k'};
 
 %% load the BAC of the linear SVM for sign
 
-addpath('/home/veronika/synced/transfer_result/weight/bac/')
+addpath('/home/veronika/transfer_learning/result/weight/bac/')
 
 loadname=['bac_bursty_',sprintf('%1.0i',T),'.mat'];
 load(loadname);

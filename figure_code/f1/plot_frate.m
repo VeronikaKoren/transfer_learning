@@ -4,10 +4,10 @@ clear all
 close all
 clc
 
-savefig=1;
+savefig=0;
 ba=1;
 
-addpath('/home/veronika/synced/transfer_result/basic_stats/frate/')
+addpath('/home/veronika/transfer_learning/result/basic_stat/frate/')
 
 namep={'target','test'};
 namea={'V1','V4'};
@@ -16,8 +16,8 @@ namebeh={'different','same'};
 figname='frate';
 savefile='/home/veronika/Dropbox/transfer/figure/f1/';
 
-
 %%
+
 fs=9;
 lw=1.5;         % linewidth for plots
 lwb=3;          % width for the black bar

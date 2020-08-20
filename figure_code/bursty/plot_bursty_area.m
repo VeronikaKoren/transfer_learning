@@ -10,7 +10,6 @@ savefig=0;
 savefig2=0;
 
 K=400;          % length of the time window
-info_case=1;
 %%
 
 ba=1;
@@ -26,7 +25,7 @@ lw=1.5;
 
 %% load data 
 
-addpath('/home/veronika/synced/transfer_result/basic_stat/ps/')
+addpath('/home/veronika/transfer_learning/result/basic_stat/ps/')
 loadname=['ps_',namea{ba},namep{period},'_',sprintf('%1.0i',K)];
 load(loadname)
 
@@ -34,7 +33,7 @@ loadname2=['ps_poisson_',namea{ba},namep{period},'_',sprintf('%1.0i',K)];
 load(loadname2)
 
 %%
-addpath('/home/veronika/synced/transfer_result/weight/tags/')
+addpath('/home/veronika/transfer_learning/result/weight/tags/')
 loadname3=['tag_bursty_',sprintf('%1.0i',K)];
 load(loadname3)
 

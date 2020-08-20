@@ -1,4 +1,4 @@
-% plots cross-correlation function of bursty and nonbursty neurons 
+% plots cross-correlation function of the signal bursty and nonbursty neurons 
 
 clear all 
 close all
@@ -30,7 +30,7 @@ end
 
 %% load result
 
-addpath('/home/veronika/synced/transfer_result/signal/bursty/')
+addpath('/home/veronika/transfer_learning/result/signal/bursty/')
 
 xcorr_tau=cell(3,1);
 for i=1:3
@@ -51,7 +51,7 @@ sm=cellfun(@(x) nanstd(x),xcorr_tau,'UniformOutput',false);
 
 
 %% permuted tau=20;
-addpath(['/home/veronika/synced/transfer_result/signal/sign/K',sprintf('%1.0i',K),'/']) % permured is same as for info
+
 loadname2=['xcorr_perm_tau', sprintf('%1.0i',tau_range(2))]; 
 load(loadname2);
 

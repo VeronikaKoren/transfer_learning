@@ -10,9 +10,6 @@ ba=1;
 period=2;
 K=400;
 
-namea={'V1','V4'};
-namep={'target','test'};
-namei={'s+c','c'};
 nameg={'strong w.','weak w.'};
 
 figname=['ccg_info_',sprintf('%1.0i',K)];
@@ -29,7 +26,7 @@ lwa=1;
 
 %% plot ccg sign for plus and minus
 
-addpath('/home/veronika/synced/transfer_result/pairwise/ccg/')
+addpath('/home/veronika/transfer_learning/result/pairwise/ccg/')
 
 loadname=['ccg_info_',sprintf('%1.0i',K),'.mat'];                
 load(loadname)

@@ -35,7 +35,7 @@ col={magenta,blue, black};
 
 %% load
 
-addpath('/home/veronika/synced/transfer_result/pairwise/cm/within/')
+addpath('/home/veronika/transfer_learning/result/pairwise/cm/within/')
 loadname=['cm_layer_within_',namei{info_case},'_',sprintf('%1.0i',K),'.mat'];                
 load(loadname)
 

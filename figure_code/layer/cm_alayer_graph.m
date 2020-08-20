@@ -37,7 +37,7 @@ lwa=1;
 
 %% add path and load result
 
-addpath('/home/veronika/synced/transfer_result/pairwise/cm/across/')
+addpath('/home/veronika/transfer_learning/result/pairwise/cm/across/')
 loadname=['cm_layer_across_',namei{info_case},'_',sprintf('%1.0i',K),'.mat'];                
 load(loadname)
 

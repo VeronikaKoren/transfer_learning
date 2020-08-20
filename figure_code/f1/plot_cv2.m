@@ -4,10 +4,10 @@ clear all
 close all
 clc
 
-savefig=1;
+savefig=0;
 ba=1;
 
-addpath('/home/veronika/synced/transfer_result/basic_stat/cv2/')
+addpath('/home/veronika/transfer_learning/result/basic_stat/cv2/')
 
 namep={'target','test'};
 namea={'V1','V4'};
@@ -15,7 +15,6 @@ namebeh={'different','same'};
 
 figname='cv2';
 savefile='/home/veronika/Dropbox/transfer/figure/f1/';
-
 
 %%
 
@@ -39,7 +38,7 @@ for period=1:2
 end
 
 R=cellfun(@(x) corr(x(:,1),x(:,2)),cv2);
-%% small plot
+
 %% plot
 
 pos_vec=[0,0,10,6];

@@ -11,9 +11,9 @@ ba=1;
 period=2;
 K=400;
 
-namei={'s+c','c'};
 namea={'V1','V4'};
 namep={'tar','test'};
+
 figname=['wabs_area_sign_',sprintf('%1.0i',K)];
 savefile='/home/veronika/Dropbox/transfer/figure/bursty/';
 pos_vec=[0,0,7,12];
@@ -30,7 +30,7 @@ col={red,blue};
 
 %% load area under PS
 
-addpath('/home/veronika/synced/transfer_result/basic_stat/ps/')
+addpath('/home/veronika/transfer_learning/result/basic_stat/ps/')
 loadname=['ps_',namea{ba},namep{period},'_',sprintf('%1.0i',K)];
 load(loadname)
 
@@ -43,7 +43,7 @@ areaps0=cell2mat(cellfun(@(x) squeeze(nanmean(x(:,:,vec),3))', psp,'UniformOutpu
 
 %% load weights
 
-addpath('/home/veronika/synced/transfer_result/weight/weight_alltr/')
+addpath('/home/veronika/transfer_learning/result/weight/weight_alltr/')
 
 loadname=['weight_alltr_s+c','_V1_', sprintf('%1.0i',K)];
 load(loadname)
@@ -51,8 +51,8 @@ load(loadname)
 loadname0=['weight_allp_s+c','_V1_', sprintf('%1.0i',K)];
 load(loadname0)
 
-wabs=abs(cell2mat(w_alltr)); % strength of the weight regular
-wabs0=cell2mat(cellfun(@(x) abs(x)',w_allp,'UniformOutput', false)); % strength of the weight permuted
+wabs=abs(cell2mat(w_alltr));                                            % strength of the weight regular
+wabs0=cell2mat(cellfun(@(x) abs(x)',w_allp,'UniformOutput', false));    % strength of the weight permuted
 
 %% compute the correlation coefficient and the p-value
 
@@ -149,3 +149,4 @@ set(H,'PaperPositionMode','Auto','PaperUnits', 'centimeters','PaperSize',[pos_ve
 if savefig==1
     saveas(H,[savefile,figname],'pdf');
 end
+

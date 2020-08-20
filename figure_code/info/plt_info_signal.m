@@ -1,5 +1,4 @@
-% plots signal mean and SEM for the variability across sessions for
-% sign/info/bursty
+% plots signal mean and SEM for the variability across sessions + regular permuted 
 
 clear all 
 close all
@@ -11,7 +10,6 @@ K=400;
 %%
 
 namebeh={'different','same'};
-namei={'s+c','c'};
 nameg={'strong weights','weak weights'};
 
 task=['plot info sessions and regular/permuted'];

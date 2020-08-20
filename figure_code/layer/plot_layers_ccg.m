@@ -31,7 +31,7 @@ lwa=1;
 
 %% plot ccg sign for plus and minus
 
-addpath('/home/veronika/synced/transfer_result/pairwise/')
+addpath('/home/veronika/transfer_learning/result/pairwise/')
 loadname=['ccg_layer_',sprintf('%1.0i',K),'.mat'];                
 load(loadname)
 

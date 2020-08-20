@@ -10,7 +10,7 @@ comp=1; % [1,2,3] is [CNM,INM,CM]
 namea={'V1','V4'};
 namelay={'SG','G','IG'};
 
-savefig=1;
+savefig=0;
 figname='raster';
 savefile='/home/veronika/Dropbox/transfer/figure/f1/';
 
@@ -21,11 +21,7 @@ fs=10;
 ms=3;
 lwa=1;
 
-if ba==1
-    dnames = '/home/veronika/v1v4/data/V1_all/';
-else
-    dnames = '/home/veronika/v1v4/data/V4_lay/';
-end
+dnames = '/home/veronika/v1v4/data/V1_all/';    
 fnames = dir([dnames filesep '*.mat']);
 %%
 nbses=length(fnames);

@@ -28,7 +28,7 @@ end
 
 %% load data
 
-addpath('/home/veronika/synced/transfer_result/signal/layer/')
+addpath('/home/veronika/transfer_learning/result/signal/layer/')
 
 % regular model for different time constant lambda
 xcorr_tau=cell(3,3);
@@ -183,6 +183,7 @@ if savefig==1
 end
 
 %%
-peak=cellfun(@(x) x(K),mm)
-peak(:,1)
+peak=cellfun(@(x) x(K),mm);
+display(peak)
+
 

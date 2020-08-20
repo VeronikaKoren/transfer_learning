@@ -7,7 +7,7 @@ clc
 
 savefig=0;
 titles={'all conditions','correct non-match','incorrect non-match','match'};
-icase=2;
+info_case=1;
 
 K=350;
 
@@ -21,7 +21,7 @@ namei={'all','cnm','inm','cm'};
 nameg={'SG','G','IG'};
 ng=length(nameg);
 
-figname=['cm_layer_inout_',namei{icase},'_',sprintf('%1.0i',K)];
+figname=['cm_layer_inout_',namei{info_case},'_',sprintf('%1.0i',K)];
 savefile='/home/veronika/Dropbox/transfer/figure/layer/';
 
 
@@ -34,8 +34,8 @@ lwa=1;
 
 %% plot cm
 
-addpath('/home/veronika/synced/transfer_result/pairwise/cm/across_pairwise/')
-loadname=['cm_layer_across_',namei{icase},'_',sprintf('%1.0i',K),'.mat'];                
+addpath('/home/veronika/transfer_learning/result/pairwise/cm/across/')
+loadname=['cm_layer_across_',namei{info_case},'_',sprintf('%1.0i',K),'.mat'];                
 load(loadname)
 
 %%
@@ -156,7 +156,7 @@ for ii=1:3
     %set(gca,'Visible','off')      
 end
 axes
-h1=title(titles{icase},'FontName','Arial','Fontsize',fs+3,'FontWeight','bold');
+h1=title(titles{info_case},'FontName','Arial','Fontsize',fs+3,'FontWeight','bold');
 
 set(gca,'Visible','off')
 set(h1,'visible','on')

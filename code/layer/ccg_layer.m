@@ -7,7 +7,6 @@ clc
 format long
 
 saveres=0;
-info_case=2;                                                                    % determines the info case for weights (use S+C or C)
 
 nperm=1000;                                                                       % permutation of sign
 nshuffle=20;                                                                    % trial shuffle to subtract the signal correlation
@@ -24,7 +23,6 @@ taumax=50;
 
 namea={'V1','V4'};
 namep={'target', 'test'};
-namei={'s+c','c'};
 nameg={'SG','G','IG'};
 ng=length(nameg);
 
@@ -36,7 +34,7 @@ addpath('/home/veronika/synced/transfer_result/input/spike_train/');
 addpath('/home/veronika/Dropbox/transfer/code/function/')
 addpath('/home/veronika/synced/transfer_result/signal/layer/');
 
-loadname=['spike_train_',namei{info_case},'_',namea{ba},'_',namep{period}];                            % spike trains 
+loadname=['spike_train_c_',namea{ba},'_',namep{period}];                            % spike trains 
 load(loadname);
 
 strain=cellfun(@(x,y) single(cat(1,x(:,:,start:start+K-1),y(:,:,start:start+K-1))),spiketrain(:,1),spiketrain(:,2), 'UniformOutput', false);
@@ -175,7 +173,7 @@ idxes=[{idx1},{idx2}];
 
 if saveres==1
     address='/home/veronika/synced/transfer_result/pairwise/ccg/';
-    filename=['ccg_layer_',namei{info_case},'_',sprintf('%1.0i',K)];
+    filename=['ccg_layer_',sprintf('%1.0i',K)];
     save([address, filename], 'lags','ccg3','perm3','r_all','pval','pval_coeff','tauvec','idxes')
     %clear all
 end

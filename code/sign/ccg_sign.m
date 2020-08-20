@@ -13,7 +13,7 @@ saveres=0;
 showfig=1;
 info_case=2;                                                                    % determines the info case for weights (use S+C or C)
 
-nperm=1000;                                                                       % permutation of sign
+nperm=1000;                                                                     % permutation of sign
 nshuffle=20;                                                                    % trial shuffle to subtract the signal correlation
 
 %%
@@ -35,14 +35,14 @@ addpath('/home/veronika/synced/transfer_result/weight/weight_alltr/');
 addpath('/home/veronika/synced/transfer_result/input/spike_train/');
 addpath('/home/veronika/Dropbox/transfer/code/function/')
 
-loadname=['spike_train_',namea{ba},'_',namep{period}];                            % spike trains from choice (CNM/INM)
+loadname=['spike_train_c_',namea{ba},'_',namep{period}];                            % spike trains from choice (CNM/INM)
 load(loadname);
 
 strain=cellfun(@(x,y) single(cat(1,x(:,:,start:start+K-1),y(:,:,start:start+K-1))),spiketrain(:,1),spiketrain(:,2), 'UniformOutput', false);
 
 %% load weights
 
-loadname2=['weight_alltr_',namei{info_case},'_',namea{ba},'_',sprintf('%1.0i',K),'.mat'];    % use weights from s+c                
+loadname2=['weight_alltr_c_',namea{ba},'_',sprintf('%1.0i',K),'.mat'];    % use weights from s+c                
 load(loadname2)
 
 nbses=size(w_alltr,1);
@@ -167,7 +167,7 @@ end
 
 if saveres==1
     address='/home/veronika/synced/transfer_result/pairwise/ccg/';
-    filename=['ccg_sign_',namei{info_case},'_',namea{ba},namep{period}];
+    filename=['ccg_sign_',sprintf('%1.0i',K)];
     save([address, filename], 'lags','cplus','cminus','r1','r2','pp','pm','pval','pval_coeff','tauvec')
     %clear all
 end
